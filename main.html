@@ -1,26 +1,16 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<script>
-  function myClock() {
-    var Time = new Date(); //создаём объект Date()
-    var hour = Time.getHours(); //получаем часы из Time
-    var minute = Time.getMinutes(); //получаем минуты из Time
-    var second = Time.getSeconds(); //получаем секунды из Time
-    //В следующих трех строках проверяем, если число (часы, минуты, секунды) меньше 10,
-    // то выводим 0 перед числом
-    if (hour < 10) hour = "0" + hour;
-    if (minute < 10) minute  = "0" + minute;
-    if (second < 10) second  = "0" + second;
-        document.getElementById("Time").innerHTML = hour + ":" + minute + ":" + second;
-    
-  }
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
-<script>
-        setInterval(myClock, 1000); //ставим выполнение данной функции каждую секунду  
-    </script>
 <body>
-    
-  <p id="Time"></p>
+    <label for="rub">RUB</label>
+    <input id='rub' type="text">
+    <label for="usd">USD</label>
+    <input id='usd' type="text">
+    <script src='script.js'></script>
 </body>
 </html>
