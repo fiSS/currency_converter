@@ -1,21 +1,52 @@
-конвертер валют.
-Получил со страницы 2 элемента:
+# конвертер валют.
+#### html
+```html
+<body>
+    <label for="rub">RUB</label>
+    <input id='rub' type="text">
+    <label for="usd">USD</label>
+    <input id='usd' type="text">
+    <script src='script.js'></script>
+</body>
+```
+#### js
+##### Получил со страницы 2 элемента:
+```javascript
 let inputRub = document.getElementById('rub'),
     inputUsd = document.getElementById('usd');
-                                      
-на inputRub с помощью обработчика событий навесил событие input, чтобы при введение определенного символа применялась конвертация в другую валюту.
+```                                      
+#### Создал объект:
+```javascript
+let request = new XMLHttpRequest();
+```
 
-Создал объект: let request = new XMLHttpRequest();
-создал current.json(из этого файла будет получен текущий курс валют)туда поместил объек: {
-    "usd": 64
+#### создал current.json из него буду получать курс:
+```javascript
+    "usd": 74
 }
-При помощи метода open, получил используя метод GET данные из 'current.json'.
-
-При помощи метода setRequestHeader настроил http запрос и указал какой контент здесь будет: json в кодировке utf-8.
-
-При помощи метода send отправил запрос на сервер(body в данном случае не использовал, т.к. использую встроенный виртуальный сервер VSCode, а он только может отправлять запросы).
-
-При помощи события readystatechange отслеживается состояние от сервера, интересут 4(операция полностью завершена) и в каком состоянии сервер 200(Запрос успешно обработан).
-
-При помощи метода parse расшифровывал данные с сервера в обычный объект, где response ответ от сервера.
+```
+#### после создания XMLHttpRequest, использовал метод open настройка ajax запроса, и первый метод GET получение данных с сервера:
+```javascript
+request.open('GET', 'current.json');
+```
+#### //setRequestHeader настройка http запросов:
+```javascript
+request.setRequestHeader('content-type', 'application/json; charset=utf-8'); 
+```
+#### и последний этап send открывает соединение и отправляет запрос на сервер:
+```javascript
+request.send();
+```
+#### повесил обработчик событий addEventListener на request, который будет отслеживать состояние запроса по следующим параметрам: 1.readyState по текущему состоянию(4 это done операция полностью завершена) и запроса по статусу(все ОК)
+```javascript
+if (request.readyState === 4 && request.status == 200
+```
+#### получаем ответ от сервера и расшифровываем с помощью метода parse:
+```javascript
+let date = JSON.parse(request.response);
+```
+#### далее простая математика, в инпут inputUsd помещаю значение деления:
+```javascript
+inputUsd.value = inputRub.value / date.usd;
+```
 
