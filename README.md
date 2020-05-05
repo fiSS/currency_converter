@@ -19,11 +19,9 @@ let inputRub = document.getElementById('rub'),
 ```javascript
 let request = new XMLHttpRequest();
 ```
-
 #### создал current.json из него буду получать курс:
 ```javascript
     "usd": 74
-}
 ```
 #### после создания XMLHttpRequest, использовал метод open настройка ajax запроса, и первый метод GET получение данных с сервера:
 ```javascript
@@ -49,4 +47,3 @@ let date = JSON.parse(request.response);
 ```javascript
 inputUsd.value = inputRub.value / date.usd;
 ```
-
