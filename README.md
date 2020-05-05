@@ -35,7 +35,12 @@ request.setRequestHeader('content-type', 'application/json; charset=utf-8');
 ```javascript
 request.send();
 ```
-#### повесил обработчик событий addEventListener на request, который будет отслеживать состояние запроса по следующим параметрам: 1.readyState по текущему состоянию(4 это done операция полностью завершена) и запроса по статусу(все ОК)
+#### повесил обработчик событий addEventListener на request:
+```javascript
+request.addEventListener('readystatechange', function()
+```
+##### вместо readystatechange можно было воспользоваться менее гибким обработчиком load, но он отслеживает только состояние "DONE"
+#### который будет отслеживать состояние запроса по следующим параметрам: 1.readyState по текущему состоянию(4 это done операция полностью завершена) и запроса по статусу(все ОК)
 ```javascript
 if (request.readyState === 4 && request.status == 200
 ```
